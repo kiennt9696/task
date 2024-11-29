@@ -1,0 +1,326 @@
+openapi: 3.0.0
+info:
+  description: Safekeeper
+  version: 1.0.0
+  title:  Safekeeper Service
+  contact:
+    email: kiennt9696@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: alive
+    description: Keepalive
+  - name: access control
+    description: access management using OAUTH2 and RBAC
+paths:
+  /:
+    get:
+      tags:
+        - alive
+      summary: Api keepalive
+      description: Api keepalive
+      operationId: task.app.index
+      responses:
+        "200":
+          description: Home quiz
+          content:
+            text/html:
+              schema:
+                type: string
+  /ping:
+    get:
+      tags:
+        - alive
+      summary: Api keepalive
+      description: Api keepalive
+      operationId: task.controllers.healthz.is_alive
+      responses:
+        "200":
+          description: is alive
+  /task:
+    post:
+      tags:
+        - "access control"
+      summary: "Get access token using session token"
+      operationId: "task.controllers.task.create_task"
+      security:
+        - jwt: [ 'create:task' ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: "title"
+                  example: "0"
+                description:
+                  type: string
+                  description: "description"
+                  example: "100"
+                assignee:
+                  type: string
+                  description: "assignee"
+                  example: "assignee"
+                type_id:
+                  type: number
+                  description: "type_id"
+                  example: "assignee"
+                severity_id:
+                  type: boolean
+                  description: ""
+              required:
+                - title
+                - type_id
+      responses:
+        401:
+          description: "Unauthorized Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseError401"
+  /task/assignment:
+    post:
+      tags:
+        - "access control"
+      summary: "Get access token using session token"
+      operationId: "task.controllers.task.assign_task_by_manager"
+      security:
+        - jwt: [ 'su_edit:task' ]
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          description: The ID of the task to update.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assignee:
+                  type: string
+                  description: "title"
+                  example: "0"
+      responses:
+        401:
+          description: "Unauthorized Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseError401"
+  /task/summary:
+    post:
+      tags:
+        - "access control"
+      summary: "Get access token using session token"
+      operationId: "task.controllers.task.get_employee_task_summary"
+      security:
+        - jwt: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _from:
+                  type: number
+                  description: "_from id"
+                  example: "0"
+                size:
+                  type: number
+                  description: "number items returned"
+                  example: "100"
+                start_date:
+                  type: string
+                  description: "search from"
+                  example: "2020-10-10 00:00:00"
+                end_date:
+                  type: string
+                  description: "search to"
+                  example: "2020-10-10 00:00:00"
+                query:
+                  type: object
+                  description: "query string"
+                sort:
+                  type: string
+                  description: "sort string"
+              required:
+                - start_date
+                - end_date
+      responses:
+        401:
+          description: "Unauthorized Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseError401"
+  /task/{task_id}:
+    post:
+      tags:
+        - "access control"
+      summary: "Get access token using session token"
+      operationId: "task.controllers.task.update_assigned_task_only"
+      security:
+        - jwt: [ 'edit:task' ]
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          description: The ID of the task to update.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status_id:
+                  type: number
+                  description: "title"
+                  example: "0"
+              required:
+                - status_id
+      responses:
+        401:
+          description: "Unauthorized Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseError401"
+
+
+  /task/all:
+    post:
+      tags:
+        - "access control"
+      summary: "Get access token using session token"
+      operationId: "task.controllers.task.get_all_tasks"
+      security:
+        - jwt: [ 'su_read:task' ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _from:
+                  type: number
+                  description: "_from id"
+                  example: "0"
+                size:
+                  type: number
+                  description: "number items returned"
+                  example: "100"
+                start_date:
+                  type: string
+                  description: "search from"
+                  example: "2020-10-10 00:00:00"
+                end_date:
+                  type: string
+                  description: "search to"
+                  example: "2020-10-10 00:00:00"
+                counting:
+                  type: boolean
+                  description: "return total number"
+                query:
+                  type: object
+                  description: "query string"
+                sort:
+                  type: string
+                  description: "sort string"
+              required:
+                - start_date
+                - end_date
+      responses:
+        401:
+          description: "Unauthorized Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseError401"
+  /task/own:
+    post:
+      tags:
+        - "access control"
+      summary: "Get access token using session token"
+      operationId: "task.controllers.task.get_personal_tasks"
+      security:
+        - jwt: ['read:task']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _from:
+                  type: number
+                  description: "_from id"
+                  example: "0"
+                size:
+                  type: number
+                  description: "number items returned"
+                  example: "100"
+                start_date:
+                  type: string
+                  description: "search from"
+                  example: "2020-10-10 00:00:00"
+                end_date:
+                  type: string
+                  description: "search to"
+                  example: "2020-10-10 00:00:00"
+                counting:
+                  type: boolean
+                  description: "return total number"
+                query:
+                  type: object
+                  description: "query string"
+                sort:
+                  type: string
+                  description: "sort string"
+              required:
+                - start_date
+                - end_date
+      responses:
+        401:
+          description: "Unauthorized Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseError401"
+
+components:
+  securitySchemes:
+    jwt:
+      type: oauth2
+      x-tokenInfoUrl: http://localhost:7979/tokeninfo
+      flows:
+        implicit:
+          authorizationUrl: https://example.com/oauth2/dialog
+          scopes:
+            uid: Unique identifier of the user accessing the service.
+      x-tokenInfoFunc: task.middlewares.token_validator.validate_token
+  schemas:
+    ApiResponseError401:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "Error message describing the unauthorized request."
+        code:
+          type: integer
+          description: "Error code."
+
+servers:
+  - url: http://0.0.0.0:8081/v1

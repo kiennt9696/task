@@ -1,0 +1,35 @@
+HOST: 127.0.0.1
+PORT: 5002
+
+SWAGGER_FILE_PATH: swagger/swagger.yaml
+LOGGER_CONFIG_PATH: logger.conf
+ACTIONLOG_DEFAULT_ACTOR: "task"
+ACTIONLOG_ENABLED: true
+DB_URI: "postgresql+psycopg2://postgres:postgres@127.0.0.1:8432/task_management?application_name=task"
+
+TOKEN_EXPIRATION_TIME: 60000
+
+PRIVATE_KEY: |
+  -----BEGIN RSA PRIVATE KEY-----
+  MIICWQIBAAKBgFYtXpISRUD4YYtqhwRhLjbFqpzQnLyAhTq6bFXe5tQxG46o8WIX
+  ZKsae5taRibryxTu9AbnHMlTgLjFb44Av727Tp3gc9qWku94nzFMK2Ie3aMV+Isr
+  jV/XgCqNrHzbpc8Efjh32VruTwFpdUnkNjEyeZkiYkv9iY1qSrAKCohNAgMBAAEC
+  gYBCaz9bV8eWlpkfyd/8KSZkQp8Hs+VJh8inhe1flafU3XB+2IkKcDs/gO7Jwp8U
+  +mEQZkcgVtoh9UDdqBYdnUgp/11qYIuRNl6W+9h8I4KMFYpFPuYTqlwfp8nnUnVu
+  Fvs0qWsubFHjfHR9zZEigbf0CuYVxMhfJadaKgnaE22QpQJBAJrtioLMGwPca5PQ
+  6v/0bsKiWUFK3PxVF8IbsdhjJYMfeiIYGRIkeApYHkvh1wNmZoWTztp89HH3kxvz
+  v8RmdJ8CQQCOZczu57m5hrhjVMEe3a+5g+BUiEjK93/uN62dADwSW+mbjSIm397m
+  auMLVfiX41dJ0ZRxJnvjn2Y3WaOrd8+TAkB7Wi4yPfg0dsdghbLV3/RgG4sdJVIV
+  xlqIPiy3sRko8WL4yl8LxuWcttRIbqQXHOz75deItnyaURhb5RMGeNzZAkBEjszB
+  BT4NDci+wjKMqs0M82pRKKBrYAfu6E2lNlS1vhzV8HhN4SEPLM0NSyH59tGyz725
+  UH77U2ZCJd1AE9oTAj8Y+4X7vVx+TU5qlgJJFd77TQVaszqac+nkhN9xv5FnZS8i
+  54v0ZonpayxIRKlTODrI2kbfW5i4putLuxfoGUA=
+  -----END RSA PRIVATE KEY-----
+
+PUBLIC_KEY: |
+  -----BEGIN PUBLIC KEY-----
+  MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgFYtXpISRUD4YYtqhwRhLjbFqpzQ
+  nLyAhTq6bFXe5tQxG46o8WIXZKsae5taRibryxTu9AbnHMlTgLjFb44Av727Tp3g
+  c9qWku94nzFMK2Ie3aMV+IsrjV/XgCqNrHzbpc8Efjh32VruTwFpdUnkNjEyeZki
+  Ykv9iY1qSrAKCohNAgMBAAE=
+  -----END PUBLIC KEY-----

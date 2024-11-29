@@ -1,0 +1,177 @@
+{
+    "task_type": [
+        {
+            "id": 1,
+            "workflow_id": 1,
+            "name": "Task"
+        },
+        {
+            "id": 2,
+            "workflow_id": 2,
+            "name": "Bug"
+        },
+        {
+            "id": 3,
+            "workflow_id": 3,
+            "name": "Feature"
+        }
+    ],
+    "task_severity": [
+        {
+            "id": 1,
+            "name": "Low"
+        },
+        {
+            "id": 2,
+            "name": "Medium"
+        },
+        {
+            "id": 3,
+            "name": "Critical"
+        }
+    ],
+    "task_status": [
+        {
+            "id": 1,
+            "name": "To Do"
+        },
+        {
+            "id": 2,
+            "name": "In Progress"
+        },
+        {
+            "id": 3,
+            "name": "Pending"
+        },
+        {
+            "id": 4,
+            "name": "Completed"
+        }
+    ],
+    "workflow": [
+        {
+            "name": "Task Workflow",
+            "description": "This workflow is for a regular task, differentiating with other type as Bug or Feature",
+            "id": 1
+        },
+        {
+            "name": "Bug Workflow",
+            "description": "This workflow is for bugs",
+            "id": 2
+        },
+        {
+            "name": "Feature Workflow",
+            "description": "This workflow is for feature tasks",
+            "id": 3
+        }
+    ],
+    "transition": [
+        {
+            "name": "ToDo -> In Progress",
+            "from_status_id": 1,
+            "workflow_id": 1,
+            "resolution": null,
+            "requires_approval": null,
+            "id": 1,
+            "to_status_id": 2,
+            "comment": null,
+            "approver": null
+        },
+        {
+            "name": "In progress -> Pending",
+            "from_status_id": 2,
+            "workflow_id": 1,
+            "resolution": null,
+            "requires_approval": true,
+            "id": 2,
+            "to_status_id": 3,
+            "comment": null,
+            "approver": "manager"
+        },
+        {
+            "name": "Pending -> In Progress",
+            "from_status_id": 3,
+            "workflow_id": 1,
+            "resolution": null,
+            "requires_approval": true,
+            "id": 3,
+            "to_status_id": 2,
+            "comment": null,
+            "approver": "manager"
+        },
+        {
+            "name": "In Progress -> Completed",
+            "from_status_id": 2,
+            "workflow_id": 1,
+            "resolution": null,
+            "requires_approval": null,
+            "id": 4,
+            "to_status_id": 4,
+            "comment": null,
+            "approver": null
+        }
+    ],
+    "task": [
+        {
+            "description": "Migrate data",
+            "parent_id": null,
+            "status_id": 1,
+            "assignee": "kiennt96",
+            "updated_by": null,
+            "id": "1",
+            "title": "Migrate database to new place",
+            "creator": "kiennt96",
+            "type_id": 1,
+            "severity_id": 1,
+            "due_date": null
+        },
+        {
+            "description": null,
+            "parent_id": null,
+            "status_id": null,
+            "assignee": "kiennt67",
+            "updated_by": null,
+            "id": "19288471-8143-4ee5-9943-ccbde1bc4146",
+            "title": "test",
+            "creator": null,
+            "type_id": 1,
+            "severity_id": null,
+            "due_date": null
+        },
+        {
+            "description": null,
+            "parent_id": null,
+            "status_id": null,
+            "assignee": "kiennt67",
+            "updated_by": null,
+            "id": "b5ff5b08-cfd5-4b14-8a58-906808053080",
+            "title": "test",
+            "creator": null,
+            "type_id": 1,
+            "severity_id": null,
+            "due_date": null
+        },
+        {
+            "description": null,
+            "parent_id": null,
+            "status_id": null,
+            "assignee": "kiennt96",
+            "updated_by": null,
+            "id": "063c7cdb-5916-4a2c-afb3-234c2c852f7f",
+            "title": "test",
+            "creator": null,
+            "type_id": 1,
+            "severity_id": null,
+            "due_date": null
+        }
+    ],
+    "user": [
+        {
+            "role": "Employee",
+            "lastname": "Kien",
+            "username": "kiennt96",
+            "id": "1",
+            "firstname": "Nguyen"
+        }
+    ]
+}
