@@ -41,8 +41,8 @@ paths:
   /task:
     post:
       tags:
-        - "access control"
-      summary: "Get access token using session token"
+        - "Task"
+      summary: "Create task"
       operationId: "task.controllers.task.create_task"
       security:
         - jwt: [ 'create:task' ]
@@ -90,13 +90,6 @@ paths:
       operationId: "task.controllers.task.assign_task_by_manager"
       security:
         - jwt: [ 'su_edit:task' ]
-      parameters:
-        - name: task_id
-          in: path
-          required: true
-          description: The ID of the task to update.
-          schema:
-            type: string
       requestBody:
         required: true
         content:
@@ -119,10 +112,10 @@ paths:
     post:
       tags:
         - "access control"
-      summary: "Get access token using session token"
+      summary: "Get task summary"
       operationId: "task.controllers.task.get_employee_task_summary"
       security:
-        - jwt: [ ]
+        - jwt: ['su_read:task']
       requestBody:
         required: true
         content:
@@ -162,11 +155,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiResponseError401"
-  /task/{task_id}:
+  /tasks/{task_id}:
     post:
       tags:
         - "access control"
-      summary: "Get access token using session token"
+      summary: "Edit assigned tasks only"
       operationId: "task.controllers.task.update_assigned_task_only"
       security:
         - jwt: [ 'edit:task' ]
@@ -203,7 +196,7 @@ paths:
     post:
       tags:
         - "access control"
-      summary: "Get access token using session token"
+      summary: "Get all tasks (Employer)"
       operationId: "task.controllers.task.get_all_tasks"
       security:
         - jwt: [ 'su_read:task' ]
@@ -253,7 +246,7 @@ paths:
     post:
       tags:
         - "access control"
-      summary: "Get access token using session token"
+      summary: "Get tasks for current user"
       operationId: "task.controllers.task.get_personal_tasks"
       security:
         - jwt: ['read:task']
