@@ -11,3 +11,4 @@ git+https://github.com/kiennt9696/common-utils.git@main
 psycopg2==2.9.10
 marshmallow_sqlalchemy==1.1.0
 alembic==1.14.0
+prometheus_flask_exporter==0.22.2

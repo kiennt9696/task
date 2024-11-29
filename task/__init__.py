@@ -10,6 +10,7 @@ from common_utils.util import load_config
 from werkzeug.exceptions import default_exceptions
 
 from task import extension
+from task.extension import metrics
 
 MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
 APPLICATION_ROOT = os.path.join(MODULE_DIR, "..")
@@ -89,6 +90,7 @@ def configure_extensions(app):
     :return:
     """
     extension.action_logger.init_app(app, logging.getLogger("action"))
+    metrics.init_app(app)
     extension.db.init_app(app)
 
 
