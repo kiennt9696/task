@@ -33,7 +33,7 @@ http://localhost:5002/v1/swagger.json
 ## Health Check
 
 ```http
-http://localhost:8081/v1/ping
+http://localhost:5002/v1/ping
 ```
 
 ## Launch tests
