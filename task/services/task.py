@@ -3,7 +3,7 @@ from common_utils.exception import Forbidden, InvalidParameter
 from helpers.util import convert_str2time, parse_sort_query
 from task.interfaces.repositories.task import ITaskRepository
 from task.models import Task
-from task.schema.schema import TaskSchema
+from task.schemas.schema import TaskSchema
 
 
 class TaskService:
