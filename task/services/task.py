@@ -99,7 +99,7 @@ class TaskService:
 
     def create_task(self, task_info):
         # do some validation on task here
-        fields = task_info.keys()
+        fields = list(task_info.keys())
         for field in fields:
             if not hasattr(Task, field):
                 del task_info[field]

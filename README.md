@@ -36,4 +36,12 @@ http://localhost:5002/v1/swagger.json
 http://localhost:5002/v1/ping
 ```
 
+## Run app
+```html
+python -m task
+```
+
 ## Launch tests
+```html
+python -m pytest -sv --cov-report xml:test_coverage/coverage.xml  --cov-report term-missing --cov=task task/tests
+```
