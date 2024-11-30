@@ -1,10 +1,18 @@
-version: '3'
+version: '2'
 
 services:
-  basic-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
+    ticket_api:
+      container_name: ticket_api
+      image: soar/ticket_api:latest
+      volumes:
+        - ./config.yaml:/usr/src/app/config.yaml
+        - ./logger.conf:/usr/src/app/logger.conf
+        - ./logs:/usr/src/app/logs
+      environment:
+        PORT: 8080
+        WORKER: 1
+        METRICS_PORT: 18080
+        prometheus_multiproc_dir: /tmp
 
+      ports:
+        - 8086:8080
