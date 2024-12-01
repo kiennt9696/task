@@ -30,7 +30,9 @@ class TestTaskRepository(unittest.TestCase):
         """
 
         mock_task = MagicMock(Task)
-        self.mock_session.query.return_value.filter.return_value.order_by.return_value.offset.return_value.limit.return_value.all.return_value = [mock_task]
+        self.mock_session.query.return_value.filter.return_value.order_by.return_value.offset.return_value.limit.return_value.all.return_value = [
+            mock_task
+        ]
 
         filters = []
         sort = [MagicMock()]
@@ -41,7 +43,9 @@ class TestTaskRepository(unittest.TestCase):
 
     def test_update_task(self):
         mock_task = MagicMock(Task)
-        self.mock_session.query.return_value.filter_by.return_value.first.return_value = mock_task
+        self.mock_session.query.return_value.filter_by.return_value.first.return_value = (
+            mock_task
+        )
 
         task_id = str(uuid4())
         data = {"name": "Updated Task"}
@@ -65,7 +69,9 @@ class TestTaskRepository(unittest.TestCase):
 
     def test_get_employee_task_summary(self):
         mock_result = MockQuery(("test_user", 5, 3))
-        self.mock_session.query.return_value.outerjoin.return_value.filter.return_value.group_by.return_value.order_by.return_value.offset.return_value.limit.return_value = mock_result
+        self.mock_session.query.return_value.outerjoin.return_value.filter.return_value.group_by.return_value.order_by.return_value.offset.return_value.limit.return_value = (
+            mock_result
+        )
 
         filters = [MagicMock()]
         sort = [MagicMock()]

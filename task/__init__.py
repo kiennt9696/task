@@ -4,9 +4,9 @@ import logging
 import logging.config
 import connexion
 
-# from flask_cors import CORS
 from common_utils.exception import api_error_handler
 from common_utils.util import load_config
+from flask_cors import CORS
 from werkzeug.exceptions import default_exceptions
 
 from task import extension
@@ -41,6 +41,7 @@ def create_app(config=None):
     )
 
     flask_app = app.app
+    CORS(flask_app)
     flask_app.config.from_mapping(config)
     flask_app.config["SECRET_KEY"] = os.urandom(24)
     flask_app.instance_path = MODULE_DIR

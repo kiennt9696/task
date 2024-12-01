@@ -45,4 +45,3 @@ class TestWorkflowService(unittest.TestCase):
         result = self.service.is_valid_transition(1, 2, 3, {"username": "test_user"})
 
         self.assertFalse(result)
-

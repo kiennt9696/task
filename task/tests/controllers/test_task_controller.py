@@ -19,7 +19,7 @@ class TestTaskController(BaseTestCase):
                     "end_date": "2023-12-31",
                     "counting": True,
                 },
-                headers={"Authorization": "Bearer mocked_token"}
+                headers={"Authorization": "Bearer mocked_token"},
             )
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json, {"tasks": [], "count": 0})
@@ -50,7 +50,9 @@ class TestTaskController(BaseTestCase):
         mock_update_task.return_value = None
 
         response = self.client.post(
-            "/tasks/task123/update", json={"status_id": 4}, headers={"Authorization": "Bearer mocked_token"}
+            "/tasks/task123/update",
+            json={"status_id": 4},
+            headers={"Authorization": "Bearer mocked_token"},
         )
         self.assertEqual(response.status_code, 204)
 
@@ -60,7 +62,11 @@ class TestTaskController(BaseTestCase):
 
         response = self.client.post(
             "/tasks/assign",
-            json={"task_id": "task123", "assignee": "test_user", "due_date": "2023-12-31"},
+            json={
+                "task_id": "task123",
+                "assignee": "test_user",
+                "due_date": "2023-12-31",
+            },
         )
         self.assertEqual(response.status_code, 204)
 
@@ -72,7 +78,11 @@ class TestTaskController(BaseTestCase):
 
         response = self.client.post(
             "/tasks/create",
-            json={"name": "Test Task", "assignee": "test_user", "due_date": "2023-12-31"},
+            json={
+                "name": "Test Task",
+                "assignee": "test_user",
+                "due_date": "2023-12-31",
+            },
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {"task_id": "task123"})
@@ -94,4 +104,3 @@ class TestTaskController(BaseTestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {"report": [["test_user", 10, 5]]})
-

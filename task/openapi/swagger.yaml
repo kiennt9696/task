@@ -193,6 +193,14 @@ paths:
 
 
   /task/all:
+    options:
+      summary: CORS Preflight
+      description: Handles preflight requests
+      operationId: task.controllers.preflight.all_task_options_handler
+      parameters: [ ]
+      responses:
+        "204":
+          description: Preflight successful
     post:
       tags:
         - "access control"
@@ -243,6 +251,14 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiResponseError401"
   /task/own:
+    options:
+      summary: CORS Preflight
+      description: Handles preflight requests
+      operationId: task.controllers.preflight.own_task_options_handler
+      parameters: [ ]
+      responses:
+        "204":
+          description: Preflight successful
     post:
       tags:
         - "access control"

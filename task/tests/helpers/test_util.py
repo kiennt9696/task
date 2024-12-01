@@ -18,7 +18,10 @@ class TestUtilityFunctions(unittest.TestCase):
 
         self.assertEqual(result, expected_user)
         mock_jwt_decode.assert_called_once_with(
-            mock_token, mock_public_key.encode(), algorithms="RS256", options={"verify_aud": False}
+            mock_token,
+            mock_public_key.encode(),
+            algorithms="RS256",
+            options={"verify_aud": False},
         )
 
     def test_parse_sort_query(self):
@@ -53,4 +56,3 @@ class TestUtilityFunctions(unittest.TestCase):
         time_str = "30-11-2023 12:00:00"
         with self.assertRaises(ValueError):
             convert_str2time(time_str)
-

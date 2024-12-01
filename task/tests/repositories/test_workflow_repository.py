@@ -21,7 +21,9 @@ class TestWorkflowRepository(unittest.TestCase):
         """
 
         mock_transition = MagicMock(Transition)
-        self.mock_session.query.return_value.filter.return_value.all.return_value = [mock_transition]
+        self.mock_session.query.return_value.filter.return_value.all.return_value = [
+            mock_transition
+        ]
 
         filters = []
         transitions, _ = self.repo.search_transition(filters, False)
@@ -43,5 +45,3 @@ class TestWorkflowRepository(unittest.TestCase):
 
         # Assertions
         self.assertEqual(count, 10)
-
-

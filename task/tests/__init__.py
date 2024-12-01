@@ -3,8 +3,14 @@ import unittest
 
 from flask import Flask, request
 
-from task.controllers.task import get_personal_tasks, get_all_tasks, update_assigned_task_only, assign_task_by_manager, \
-    create_task, get_employee_task_summary
+from task.controllers.task import (
+    get_personal_tasks,
+    get_all_tasks,
+    update_assigned_task_only,
+    assign_task_by_manager,
+    create_task,
+    get_employee_task_summary,
+)
 
 
 class BaseTestCase(unittest.TestCase):
@@ -36,9 +42,7 @@ class BaseTestCase(unittest.TestCase):
         self.app.add_url_rule(
             "/tasks/personal", view_func=personal_tasks_view, methods=["POST"]
         )
-        self.app.add_url_rule(
-            "/tasks/all", view_func=all_tasks_view, methods=["POST"]
-        )
+        self.app.add_url_rule("/tasks/all", view_func=all_tasks_view, methods=["POST"])
         self.app.add_url_rule(
             "/tasks/<task_id>/update", view_func=update_task_view, methods=["POST"]
         )
@@ -51,4 +55,3 @@ class BaseTestCase(unittest.TestCase):
         self.app.add_url_rule(
             "/tasks/employee-summary", view_func=employee_summary_view, methods=["POST"]
         )
-
